@@ -43,6 +43,15 @@ router.delete('/:id', async function(req, res, next) {
     return res.status(200).json(todo)
 });
 
+router.patch('/:id', async function(req, res, next) {
+    const todo = await Todo.findByIdAndUpdate(req.params.id, {
+        completed: req.body.completed,
+        dateCompleted: req.body.dateCompleted
+    }).exec()
+    console.log("GOT A TOGGLE REQ")
+    return res.status(200).json(todo)
+});
+
 router.post('/', async function (req, res) {
   const todo = new Todo({
     "title": req.body.title,
