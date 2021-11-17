@@ -5,6 +5,17 @@ const Todo = require('../models/Todo')
 
 const privateKey = process.env.JWT_PRIVATE_KEY;
 
+router.get('/', async function(req, res, next) {
+    const todos = await Todo.find().exec()
+    return res.status(200).json({"todos": todos})
+});
+
+router.get('/:authorId', async function(req, res, next) {
+    const todos = await Todo.find().where('author').equals(req.params.authorId).exec()
+    console.log("CHECKED TODOS BY AUTHOR")
+    return res.status(200).json({"todos": todos})
+});
+
 // Validate before moving on
 router.use(function(req, res, next) {
       console.log(req.header("Authorization"))
@@ -21,13 +32,14 @@ router.use(function(req, res, next) {
       next()
   })
 
-router.get('/', async function(req, res, next) {
-    const todos = await Todo.find().where('author').equals(req.payload.id).exec()
-    return res.status(200).json({"todos": todos})
-});
+// router.get('/', async function(req, res, next) {
+//     const todos = await Todo.find().exec()
+//     return res.status(200).json({"todos": todos})
+// });
 
-router.get('/:todoId', async function(req, res, next) {
-    const todo = await Todo.findOne().where('_id').equals(req.params.todoId).exec()
+router.delete('/:id', async function(req, res, next) {
+    const todo = await Todo.findByIdAndRemove(req.params.id).exec()
+    console.log("GOT A DELETE REQ")
     return res.status(200).json(todo)
 });
 
@@ -38,7 +50,7 @@ router.post('/', async function (req, res) {
     "dateCreated": req.body.dateCreated,
     "completed": req.body.completed,
     "dateCompleted": req.body.dateCompleted,
-    "author": req.payload.id
+    "author": req.body.author
     })
 
     await todo.save().then( savedTodo => {

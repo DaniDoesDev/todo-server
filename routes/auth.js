@@ -7,6 +7,18 @@ const User = require('../models/User');
 const saltRounds = 10;
 const privateKey = process.env.JWT_PRIVATE_KEY;
 
+// router.get('/users', async function(req, res, next) {
+//   const users = await User.find().exec()
+//   console.log(users)
+//   return res.status(200).json({"users": users})
+// });
+
+router.get('/', async function(req, res, next) {
+  const users = await User.find().exec()
+  console.log(users)
+  return res.status(200).json({"users": users})
+});
+
 router.use(function(req, res, next) {
   bcrypt.genSalt(saltRounds, function(err, salt) {
     bcrypt.hash(req.body.password, salt, function(err, hash) {
