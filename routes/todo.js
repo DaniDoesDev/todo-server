@@ -39,9 +39,9 @@ router.delete('/:id', async function (req, res, next) {
             console.log("GOT A DELETE REQ")
             return res.status(200).json(todo)
         }
-        res.status(400).json({"error": "Not authorized to delete this post"})
+        res.status(400).json({ "error": "Not authorized to delete this post" })
     } else {
-        res.status(400).json({"error": "Missing username or author in req body"})
+        res.status(400).json({ "error": "Missing username or author in req body" })
     }
 });
 
@@ -55,9 +55,9 @@ router.patch('/:id', async function (req, res, next) {
             console.log("GOT A TOGGLE REQ")
             return res.status(200).json(todo)
         }
-        res.status(400).json({"error": "Not authorized to toggle this post"})
+        res.status(400).json({ "error": "Not authorized to toggle this post" })
     } else {
-        res.status(400).json({"error": "Missing username or author in req body"})
+        res.status(400).json({ "error": "Missing username or author in req body" })
     }
 });
 
