@@ -32,11 +32,6 @@ router.use(function (req, res, next) {
     next()
 })
 
-// router.get('/', async function(req, res, next) {
-//     const todos = await Todo.find().exec()
-//     return res.status(200).json({"todos": todos})
-// });
-
 router.delete('/:id', async function (req, res, next) {
     if (req.body.username && req.body.author) {
         if (req.body.username === req.body.author) {

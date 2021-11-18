@@ -16,6 +16,7 @@ const privateKey = process.env.JWT_PRIVATE_KEY;
 router.get('/', async function(req, res, next) {
   const users = await User.find().exec()
   console.log(users)
+  console.log("CHECKED USERS FOR USER LIST")
   return res.status(200).json({"users": users})
 });
 
