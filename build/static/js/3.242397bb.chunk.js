@@ -1,2 +1,0 @@
-(this.webpackJsonptodo=this.webpackJsonptodo||[]).push([[3],{110:function(t,e,n){"use strict";n.r(e),n.d(e,"default",(function(){return c}));var s=n(0),u=n(9),o=n(1);function c(){var t=Object(s.useContext)(u.a),e=t.state,n=t.dispatch,c=e.user;return Object(o.jsxs)("form",{onSubmit:function(t){t.preventDefault(),n({type:"LOGOUT"})},children:["Logged in as: ",Object(o.jsx)("b",{children:c.username}),Object(o.jsx)("input",{type:"submit",value:"Logout"})]})}}}]);
-//# sourceMappingURL=3.242397bb.chunk.js.map
